@@ -122,9 +122,9 @@
 
 <script>
   // Uprav podle svého repozitáře
-  const user = "kodymoprac-pixel";    // např. "jan-novak"
-  const repo = "-Portfolio";     // např. "portfolio"
-  const imagesPath = "images";         // složka s fotkami v repo
+  const user = "kodymoprac-pixel";    // tvoje GitHub uživatelské jméno
+  const repo = "Portfolio";           // název repozitáře bez pomlčky
+  const imagesPath = "images";        // složka s fotkami v repo
 
   const container = document.getElementById("github-gallery");
 
@@ -148,36 +148,35 @@
       .map(f => `https://raw.githubusercontent.com/${user}/${repo}/main/${imagesPath}/${folder}/${f.name}`);
   }
 
+  // vykreslení galerie
   async function renderGallery() {
-  container.innerHTML = "";
-  const folders = await fetchFolders();
+    container.innerHTML = "";
+    const folders = await fetchFolders();
 
-  for (const folder of folders) {
-    const card = document.createElement("div");
-    card.className = "w3-card";
+    for (const folder of folders) {
+      const card = document.createElement("div");
+      card.className = "w3-card";
 
-    const heading = document.createElement("h2");
-    heading.textContent = folder;
-    card.appendChild(heading);
+      const heading = document.createElement("h2");
+      heading.textContent = folder;
+      card.appendChild(heading);
 
-    const grid = document.createElement("div");
-    grid.className = "gallery-grid";
-    card.appendChild(grid);
+      const grid = document.createElement("div");
+      grid.className = "gallery-grid";
+      card.appendChild(grid);
 
-    container.appendChild(card);
+      container.appendChild(card);
 
-    const images = await fetchImages(folder);
+      const images = await fetchImages(folder);
 
-    // projdeme všechny obrázky a přidáme je do gridu
-    images.forEach(src => {
-      const img = document.createElement("img");
-      img.src = src;
-      img.loading = "lazy"; // načítá až když je potřeba
-      grid.appendChild(img);
-    });
+      images.forEach(src => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.loading = "lazy";   // načítá až při scrollu
+        grid.appendChild(img);
+      });
+    }
   }
-}
-
 
   renderGallery();
 </script>
@@ -214,20 +213,21 @@
     margin-top: 1rem;
   }
 
-    .gallery-grid img {  
+  .gallery-grid img {  
     width: 100%;
     height: auto;          /* zachová proporce originálu */
     max-height: 400px;     /* nepřerůstá stránku */
-    object-fit: contain;   /* nepřekrývá, zachovává poměr stran */
+    object-fit: contain;   /* zachovává poměr stran */
     border-radius: 8px;
     transition: transform .2s ease;
-}
+  }
 
-
-
-  .gallery-grid img:hover { transform: scale(1.03); }
+  .gallery-grid img:hover { 
+    transform: scale(1.03); 
+  }
 </style>
 <!-- ==== KONEC automatické galerie ==== -->
+
 
 
 
