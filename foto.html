@@ -124,12 +124,14 @@
 
     container.appendChild(card);
 
-    files.forEach(fileName => {
-      const img = document.createElement("img");
-      img.src = `https://raw.githubusercontent.com/kodymoprac-pixel/Portfolio/main/images/${folderName}/${fileName}`;
-      img.loading = "lazy";
-      grid.appendChild(img);
+      files.forEach(fileName => {
+    const img = document.createElement("img");
+    // URL obrázku odkazuje na raw GitHub content
+    img.src = `https://raw.githubusercontent.com/kodymoprac-pixel/Portfolio/main/images/${folderName}/${fileName}`;
+    img.loading = "lazy";
+    grid.appendChild(img);
     });
+
   }
 </script>
 
