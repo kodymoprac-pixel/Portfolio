@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio-OK-</title>
+
+  <!-- W3.CSS -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background-color: #000;
+      font-family: 'Roboto', sans-serif;
+      color: white;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Světlý stín po okrajích (vignette efekt) */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      box-shadow: inset 0 0 200px 60px rgba(255, 255, 255, 0.2);
+      z-index: 0;
+    }
+
+    /* Navigační lišta */
+    .w3-bar {
+        position: relative;
+        z-index: 2;
+        padding: 10px 40px;
+        margin: 10px auto;         /* 🟢 vycentrování vodorovně */
+        border-radius: 25px;
+        width: calc(100% - 80px);  /* šířka o 40px z každé strany menší */
+        max-width: 1200px;         /* 🟢 volitelně – omezí maximální šířku, aby nebyla přes celý monitor */
+    }
+
+
+    /* Karta obsahu */
+    .w3-card {
+        margin: 15px auto 40px;        /* shora 80px, dole 40px, vycentrováno vodorovně */
+        padding: 40px;                  /* odsazení obsahu uvnitř karty */
+        width: calc(100% - 80px);       /* 40px odsazení z každé strany */
+        max-width: 1200px;              /* omezí maximální šířku karty */
+        background-color: rgba(88, 88, 88, 0.336);
+        border-radius: 25px;
+    }
+
+
+    .hed1 {
+      text-align: center;
+    }
+
+    /* Flexbox pro obrázek a text */
+    .content-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap; /* zalomení, když se nevejde */
+    }
+
+    .side-image {
+      width: 350px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px;
+      flex-shrink: 0; /* zabrání deformaci obrázku */
+    }
+
+    .side-text {
+      flex: 1; /* text se roztáhne dle místa */
+      min-width: 250px; /* při zmenšení začne zalamovat */
+      text-align: left;
+    }
+
+    /* ✅ Responzivní chování: na malých obrazovkách se obrázek přemístí pod text */
+    @media (max-width: 768px) {
+      .content-row {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .side-text {
+        text-align: center;
+      }
+
+      .side-image {
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigační lišta -->
+  <div class="w3-bar w3-black w3-top w3-large">
+    <a href="index.html" class="w3-bar-item w3-button w3-mobile">Domů</a>
+    <a href="Video.html" class="w3-bar-item w3-button w3-mobile">Video</a>
+    <a href="foto.html" class="w3-bar-item w3-button w3-mobile">Foto</a>
+    <a href="3D.html" class="w3-bar-item w3-button w3-mobile">3D</a>
+  </div>
+
+  <!-- Obsah -->
+  <div class="w3-panel w3-card">
+    <h1 class="hed1">3D</h1>
+    <P style="text-align-last: center;color: red;">V procesu !!</P>
+    
+  </div>
+
+</body>
+</html>
