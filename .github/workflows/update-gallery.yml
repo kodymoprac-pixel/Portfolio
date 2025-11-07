@@ -2,9 +2,9 @@ name: Auto-generate gallery list
 
 on:
   push:
-    branches: [main] # nebo master
+    branches: [main]        # spustí se na každém pushi do main
     paths:
-      - 'images/**'
+      - 'images/**'         # nebo generované obrázky
       - 'generate_gallery.py'
 
 jobs:
@@ -12,21 +12,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Stáhne repozitář
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      # 2️⃣ Nastaví Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
+      # 3️⃣ Spustí skript pro generování gallery_list.js
       - name: Generate gallery list
         run: python generate_gallery.py
 
+      # 4️⃣ Commitne a pushne změny přes GITHUB_TOKEN
       - name: Commit and push changes
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git add gallery_list.js
           git diff-index --quiet HEAD || git commit -m "Auto-update gallery list"
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/kodymoprac-pixel/portfolio.git HEAD:main
+
