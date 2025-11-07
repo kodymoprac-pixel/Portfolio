@@ -117,18 +117,16 @@
     </div>
   </div>
 
-  <!-- ==== ZAČÁTEK automatické galerie z GitHub ==== -->
+  <!-- ==== ZAČÁTEK dlaždicové galerie z GitHub ==== -->
 <div id="github-gallery"></div>
 
 <script>
-  // Uprav podle svého repozitáře
-  const user = "kodymoprac-pixel";    // tvoje GitHub uživatelské jméno
-  const repo = "-Portfolio";           // název repozitáře bez pomlčky
-  const imagesPath = "images";        // složka s fotkami v repo
+  const user = "kodymoprac-pixel";  // tvoje GitHub jméno
+  const repo = "-Portfolio";          // název repozitáře
+  const imagesPath = "images";       // složka s fotkami
 
   const container = document.getElementById("github-gallery");
 
-  // načtení seznamu složek
   async function fetchFolders() {
     const url = `https://api.github.com/repos/${user}/${repo}/contents/${imagesPath}`;
     const res = await fetch(url);
@@ -137,7 +135,6 @@
     return items.filter(i => i.type === "dir").map(i => i.name);
   }
 
-  // načtení obrázků ze složky
   async function fetchImages(folder) {
     const url = `https://api.github.com/repos/${user}/${repo}/contents/${imagesPath}/${folder}`;
     const res = await fetch(url);
@@ -148,7 +145,6 @@
       .map(f => `https://raw.githubusercontent.com/${user}/${repo}/main/${imagesPath}/${folder}/${f.name}`);
   }
 
-  // vykreslení galerie
   async function renderGallery() {
     container.innerHTML = "";
     const folders = await fetchFolders();
@@ -172,7 +168,15 @@
       images.forEach(src => {
         const img = document.createElement("img");
         img.src = src;
-        img.loading = "lazy";   // načítá až při scrollu
+        img.loading = "lazy";
+
+        // Po načtení obrázku spočítáme, kolik "řádků" zabere
+        img.onload = () => {
+          const rowHeight = 10; // stejné jako grid-auto-rows
+          const rowSpan = Math.ceil(img.height / rowHeight);
+          img.style.gridRowEnd = `span ${rowSpan}`;
+        };
+
         grid.appendChild(img);
       });
     }
@@ -185,7 +189,7 @@
   #github-gallery {
     display: flex;
     flex-direction: column;
-    gap: 60px; /* mezera mezi kartami */
+    gap: 40px; /* mezera mezi kartami */
     margin: 2rem 0;
   }
 
@@ -209,24 +213,24 @@
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 12px;
-    margin-top: 1rem;
+    grid-auto-rows: 10px; /* základní řádek pro výšku dlaždice */
+    gap: 10px;
   }
 
-  .gallery-grid img {  
+  .gallery-grid img {
     width: 100%;
-    height: auto;          /* zachová proporce originálu */
-    max-height: 400px;     /* nepřerůstá stránku */
-    object-fit: contain;   /* zachovává poměr stran */
+    height: auto;
+    display: block;
     border-radius: 8px;
     transition: transform .2s ease;
   }
 
-  .gallery-grid img:hover { 
-    transform: scale(1.03); 
+  .gallery-grid img:hover {
+    transform: scale(1.03);
   }
 </style>
-<!-- ==== KONEC automatické galerie ==== -->
+<!-- ==== KONEC dlaždicové galerie ==== -->
+
 
 
 
