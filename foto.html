@@ -149,32 +149,35 @@
   }
 
   async function renderGallery() {
-    container.innerHTML = "";
-    const folders = await fetchFolders();
+  container.innerHTML = "";
+  const folders = await fetchFolders();
 
-    for (const folder of folders) {
-      const card = document.createElement("div");
-      card.className = "w3-card";
+  for (const folder of folders) {
+    const card = document.createElement("div");
+    card.className = "w3-card";
 
-      const heading = document.createElement("h2");
-      heading.textContent = folder;
-      card.appendChild(heading);
+    const heading = document.createElement("h2");
+    heading.textContent = folder;
+    card.appendChild(heading);
 
-      const grid = document.createElement("div");
-      grid.className = "gallery-grid";
-      card.appendChild(grid);
+    const grid = document.createElement("div");
+    grid.className = "gallery-grid";
+    card.appendChild(grid);
 
-      container.appendChild(card);
+    container.appendChild(card);
 
-      const images = await fetchImages(folder);
-      images.forEach(src => {
-        const img = document.createElement("img");
-        img.src = src;
-        img.loading = "lazy";
-        grid.appendChild(img);
-      });
-    }
+    const images = await fetchImages(folder);
+
+    // projdeme všechny obrázky a přidáme je do gridu
+    images.forEach(src => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.loading = "lazy"; // načítá až když je potřeba
+      grid.appendChild(img);
+    });
   }
+}
+
 
   renderGallery();
 </script>
@@ -211,13 +214,16 @@
     margin-top: 1rem;
   }
 
-  .gallery-grid img {
+    .gallery-grid img {  
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;          /* zachová proporce originálu */
+    max-height: 400px;     /* nepřerůstá stránku */
+    object-fit: contain;   /* nepřekrývá, zachovává poměr stran */
     border-radius: 8px;
     transition: transform .2s ease;
-  }
+}
+
+
 
   .gallery-grid img:hover { transform: scale(1.03); }
 </style>
