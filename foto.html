@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Portfolio-OK-Foto</title>
 
-  <!-- W3.CSS -->
+  <!-- W3.CSS a font -->
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
@@ -20,218 +20,118 @@
       overflow-x: hidden;
     }
 
-    /* Světlý stín po okrajích (vignette efekt) */
     body::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       pointer-events: none;
-      box-shadow: inset 0 0 200px 60px rgba(255, 255, 255, 0.2);
+      box-shadow: inset 0 0 200px 60px rgba(255,255,255,0.2);
       z-index: 0;
     }
 
-    /* Navigační lišta */
     .w3-bar {
-        position: relative;
-        z-index: 2;
-        padding: 10px 40px;
-        margin: 10px auto;         /* 🟢 vycentrování vodorovně */
-        border-radius: 25px;
-        width: calc(100% - 80px);  /* šířka o 40px z každé strany menší */
-        max-width: 1200px;         /* 🟢 volitelně – omezí maximální šířku, aby nebyla přes celý monitor */
+      position: relative;
+      z-index: 2;
+      padding: 10px 40px;
+      margin: 10px auto;
+      border-radius: 25px;
+      width: calc(100% - 80px);
+      max-width: 1200px;
     }
 
-
-    /* Karta obsahu */
     .w3-card {
-        margin: 15px auto 40px;        /* shora 80px, dole 40px, vycentrováno vodorovně */
-        padding: 40px;                  /* odsazení obsahu uvnitř karty */
-        width: calc(100% - 80px);       /* 40px odsazení z každé strany */
-        max-width: 1200px;              /* omezí maximální šířku karty */
-        background-color: rgba(88, 88, 88, 0.336);
-        border-radius: 25px;
+      margin: 15px auto 40px;
+      padding: 40px;
+      width: calc(100% - 80px);
+      max-width: 1200px;
+      background-color: rgba(88, 88, 88, 0.336);
+      border-radius: 25px;
     }
 
-
-    .hed1 {
-      text-align: center;
+    .w3-card h2 {
+      margin-bottom: 12px;
+      font-size: 1.5rem;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 4px;
+      text-transform: capitalize;
     }
 
-    /* Flexbox pro obrázek a text */
-    .content-row {
+    .hed1 { text-align: center; }
+
+    #github-gallery {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-      flex-wrap: wrap; /* zalomení, když se nevejde */
+      flex-direction: column;
+      gap: 40px;
+      margin: 2rem 0;
     }
 
-    .side-image {
-      width: 350px;
-      max-width: 100%;
-      height: auto;
-      border-radius: 15px;
-      flex-shrink: 0; /* zabrání deformaci obrázku */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
     }
 
-    .side-text {
-      flex: 1; /* text se roztáhne dle místa */
-      min-width: 250px; /* při zmenšení začne zalamovat */
-      text-align: left;
+    .gallery-grid img {
+      height: 300px;
+      width: 100%;
+      object-fit: contain;
+      background-color: rgb(255,255,255);
+      border-radius: 8px;
+      transition: transform .2s ease;
     }
 
-    /* ✅ Responzivní chování: na malých obrazovkách se obrázek přemístí pod text */
-    @media (max-width: 768px) {
-      .content-row {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .side-text {
-        text-align: center;
-      }
-
-      .side-image {
-        margin-top: 20px;
-      }
+    .gallery-grid img:hover {
+      transform: scale(1.03);
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigační lišta -->
-  <div class="w3-bar w3-black w3-top w3-large">
-    <a href="index.html" class="w3-bar-item w3-button w3-mobile">Domů</a>
-    <a href="Video.html" class="w3-bar-item w3-button w3-mobile">Video</a>
-    <a href="foto.html" class="w3-bar-item w3-button w3-mobile">Foto</a>
-    <a href="3D.html" class="w3-bar-item w3-button w3-mobile">3D</a>
-  </div>
+<!-- Navigační lišta -->
+<div class="w3-bar w3-black w3-top w3-large">
+  <a href="index.html" class="w3-bar-item w3-button w3-mobile">Domů</a>
+  <a href="Video.html" class="w3-bar-item w3-button w3-mobile">Video</a>
+  <a href="foto.html" class="w3-bar-item w3-button w3-mobile">Foto</a>
+  <a href="3D.html" class="w3-bar-item w3-button w3-mobile">3D</a>
+</div>
 
-  <!-- Obsah -->
-  <div class="w3-panel w3-card">
-    <h1 class="hed1">Foto</h1>
-  
-    </div>
-  </div>
+<!-- Obsah -->
+<div class="w3-panel w3-card">
+  <h1 class="hed1">Foto</h1>
+</div>
 
- <!-- ==== ZAČÁTEK stabilní galerie z GitHub ==== -->
+<!-- Galerie -->
 <div id="github-gallery"></div>
 
+<!-- Načtení automaticky generovaného seznamu obrázků s podsložkami -->
+<script src="gallery_list.js"></script>
 <script>
-  const user = "kodymoprac-pixel";  // tvoje GitHub jméno
-  const repo = "portfolio";         // název repozitáře
-  const imagesPath = "images";       // složka s fotkami
-
   const container = document.getElementById("github-gallery");
 
-  async function fetchFolders() {
-    const url = `https://api.github.com/repos/${user}/${repo}/contents/${imagesPath}`;
-    const res = await fetch(url);
-    if (!res.ok) return [];
-    const items = await res.json();
-    return items.filter(i => i.type === "dir").map(i => i.name);
+  // images je objekt { "Nadpis sekce": ["foto1.jpg", "foto2.jpg"] }
+  for (const [folderName, files] of Object.entries(images)) {
+    const card = document.createElement("div");
+    card.className = "w3-card";
+
+    const heading = document.createElement("h2");
+    heading.textContent = folderName;
+    card.appendChild(heading);
+
+    const grid = document.createElement("div");
+    grid.className = "gallery-grid";
+    card.appendChild(grid);
+
+    container.appendChild(card);
+
+    files.forEach(fileName => {
+      const img = document.createElement("img");
+      img.src = `https://raw.githubusercontent.com/kodymoprac-pixel/Portfolio/main/images/${folderName}/${fileName}`;
+      img.loading = "lazy";
+      grid.appendChild(img);
+    });
   }
-
-  async function fetchImages(folder) {
-    const url = `https://api.github.com/repos/${user}/${repo}/contents/${imagesPath}/${folder}`;
-    const res = await fetch(url);
-    if (!res.ok) return [];
-    const files = await res.json();
-    return files
-      .filter(f => f.type === "file" && /\.(jpg|jpeg|png|gif|webp|avif)$/i.test(f.name))
-      .map(f => `https://raw.githubusercontent.com/${user}/${repo}/main/${imagesPath}/${folder}/${f.name}`);
-  }
-
-  async function renderGallery() {
-    container.innerHTML = "";
-    const folders = await fetchFolders();
-
-    for (const folder of folders) {
-      const card = document.createElement("div");
-      card.className = "w3-card";
-
-      const heading = document.createElement("h2");
-      heading.textContent = folder;
-      card.appendChild(heading);
-
-      const grid = document.createElement("div");
-      grid.className = "gallery-grid";
-      card.appendChild(grid);
-
-      container.appendChild(card);
-
-      const images = await fetchImages(folder);
-
-      images.forEach(src => {
-        const img = document.createElement("img");
-        img.src = src;
-        img.loading = "lazy";
-        grid.appendChild(img);
-      });
-    }
-  }
-
-  renderGallery();
 </script>
-
-<style>
-  #github-gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 40px; /* mezera mezi kartami */
-    margin: 2rem 0;
-  }
-
-  .w3-card {
-    margin: 15px auto;
-    padding: 40px;
-    width: calc(100% - 80px);
-    max-width: 1200px;
-    background-color: rgba(88, 88, 88, 0.336);
-    border-radius: 25px;
-  }
-
-  .w3-card h2 {
-    margin-bottom: 12px;
-    font-size: 1.5rem;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 4px;
-    text-transform: capitalize;
-  }
-
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 10px;
-  }
-
-  .gallery-grid img {
-    height: 300px;          /* stabilní výška pro všechny obrázky */
-    width: 100%;            /* vyplní šířku dlaždice */
-    object-fit: contain;    /* zachová proporce, přidá pruhy po stranách */
-    background-color: rgb(255, 255, 255); /* světle šedé pruhy po stranách */
-    border-radius: 8px;
-    transition: transform .2s ease;
-  }
-
-  .gallery-grid img:hover {
-    transform: scale(1.03);
-  }
-</style>
-<!-- ==== KONEC stabilní galerie ==== -->
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>
