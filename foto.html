@@ -214,20 +214,21 @@
   .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  grid-auto-rows: 20px; /* větší základní řádek */
-  gap: 10px;}
+  gap: 10px;
+}
 
-  .gallery-grid img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-    transition: transform .2s ease;
-  }
+.gallery-grid img {
+  height: 300px;          /* stabilní výška pro všechny obrázky */
+  width: 100%;            /* vyplní šířku dlaždice */
+  object-fit: contain;    /* zachová proporce, přidá “pruhy” pokud je obrázek užší */
+  background-color: rgba(0,0,0,0.1); /* světle šedé pruhy po stranách */
+  border-radius: 8px;
+  transition: transform .2s ease;
+}
 
-  .gallery-grid img:hover {
-    transform: scale(1.03);
-  }
+.gallery-grid img:hover {
+  transform: scale(1.03);
+}
 </style>
 <!-- ==== KONEC dlaždicové galerie ==== -->
 
