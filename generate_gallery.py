@@ -1,28 +1,42 @@
 import os
+import shutil
+from PIL import Image
 import json
 
-# složka s obrázky
-images_dir = "images"
-
-# výstupní soubor
+# složky
+input_dir = "images_original"  # originální fotky
+output_dir = "images"          # zmenšené fotky pro web
 output_file = "gallery_list.js"
+max_width = 1000               # šířka zmenšeného obrázku
 
-# slovník pro galerii
+# 1️⃣ vymažeme staré zmenšené obrázky
+if os.path.exists(output_dir):
+    shutil.rmtree(output_dir)
+os.makedirs(output_dir, exist_ok=True)
+
+# 2️⃣ projdeme všechny soubory v originálních fotkách (včetně podsložek)
 gallery = {}
+for root, _, files in os.walk(input_dir):
+    folder_name = os.path.relpath(root, input_dir)
+    images_list = []
+    for f in files:
+        if f.lower().endswith((".jpg", ".jpeg", ".png")):
+            # otevření obrázku
+            img = Image.open(os.path.join(root, f))
+            # zachování poměru stran
+            w_percent = max_width / float(img.width)
+            h_size = int(img.height * w_percent)
+            img = img.resize((max_width, h_size), Image.LANCZOS)
+            # uložení do složky images/
+            out_path = os.path.join(output_dir, f)
+            img.save(out_path)
+            images_list.append(f"{output_dir}/{f}")
+    if images_list:
+        gallery[folder_name] = images_list
 
-# projdeme všechny podsložky v images_dir
-for folder in os.listdir(images_dir):
-    folder_path = os.path.join(images_dir, folder)
-    if os.path.isdir(folder_path):
-        # vezmeme jen obrázky
-        files = [f for f in os.listdir(folder_path) if f.lower().endswith((".jpg", ".jpeg", ".png", ".gif", ".webp", ".avif"))]
-        if files:
-            # uložíme cestu k souboru relativní k webu
-            gallery[folder] = [f"{images_dir}/{folder}/{f}" for f in files]
-
-# vytvoříme gallery_list.js
+# 3️⃣ vytvoření gallery_list.js
 with open(output_file, "w", encoding="utf-8") as f:
     f.write("const images = " + json.dumps(gallery, indent=2) + ";")
 
-print(f"✅ Soubor {output_file} vygenerován s {len(gallery)} sekcemi.")
-
+total_images = sum(len(v) for v in gallery.values())
+print(f"✅ Vygenerováno {total_images} obrázků do '{output_dir}' a vytvořen '{output_file}'")
