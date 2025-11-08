@@ -28,8 +28,9 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git add gallery_list.js
-          git diff-index --quiet HEAD || git commit -m "Auto-update gallery list" ||
+          git diff-index --quiet HEAD || git commit -m "Auto-update gallery list"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/kodymoprac-pixel/portfolio.git HEAD:main
+
 
 
 
