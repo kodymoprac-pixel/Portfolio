@@ -1,42 +1,42 @@
 const images = {
   "Architektura": [
-    "images/Architektura/IMG_2253.jpg",
-    "images/Architektura/IMG_2738.jpg",
-    "images/Architektura/_1023382.jpg",
-    "images/Architektura/_MG_3204.jpg",
-    "images/Architektura/_MG_3220.jpg"
+    "images/Architektura/obr1.jpg",
+    "images/Architektura/obr2.jpg",
+    "images/Architektura/obr3.jpg",
+    "images/Architektura/obr4.jpg",
+    "images/Architektura/obr5.jpg"
   ],
   "Krajina": [
-    "images/Krajina/IMG_0974-Enhanced-NR.jpg",
-    "images/Krajina/IMG_1144-Enhanced-NR.jpg",
-    "images/Krajina/IMG_2254.jpg",
-    "images/Krajina/IMG_2887.jpg",
-    "images/Krajina/_MG_3040.jpg",
-    "images/Krajina/_MG_3195.jpg"
+    "images/Krajina/obr10.jpg",
+    "images/Krajina/obr11.jpg",
+    "images/Krajina/obr6.jpg",
+    "images/Krajina/obr7.jpg",
+    "images/Krajina/obr8.jpg",
+    "images/Krajina/obr9.jpg"
   ],
   "Lid\u00e9 a zv\u00ed\u0159ata": [
-    "images/Lid\u00e9 a zv\u00ed\u0159ata/IMG_2242.jpg",
-    "images/Lid\u00e9 a zv\u00ed\u0159ata/IMG_2264.jpg",
-    "images/Lid\u00e9 a zv\u00ed\u0159ata/_1023341.jpg",
-    "images/Lid\u00e9 a zv\u00ed\u0159ata/_1023384.jpg",
-    "images/Lid\u00e9 a zv\u00ed\u0159ata/_1023438.jpg",
-    "images/Lid\u00e9 a zv\u00ed\u0159ata/_1023640.jpg",
-    "images/Lid\u00e9 a zv\u00ed\u0159ata/_MG_3046.jpg",
-    "images/Lid\u00e9 a zv\u00ed\u0159ata/_MG_3062.jpg"
+    "images/Lid\u00e9 a zv\u00ed\u0159ata/obr12.jpg",
+    "images/Lid\u00e9 a zv\u00ed\u0159ata/obr13.jpg",
+    "images/Lid\u00e9 a zv\u00ed\u0159ata/obr14.jpg",
+    "images/Lid\u00e9 a zv\u00ed\u0159ata/obr15.jpg",
+    "images/Lid\u00e9 a zv\u00ed\u0159ata/obr16.jpg",
+    "images/Lid\u00e9 a zv\u00ed\u0159ata/obr17.jpg",
+    "images/Lid\u00e9 a zv\u00ed\u0159ata/obr18.jpg",
+    "images/Lid\u00e9 a zv\u00ed\u0159ata/obr19.jpg"
   ],
   "Produktov\u00e9": [
-    "images/Produktov\u00e9/_1023661.jpg",
-    "images/Produktov\u00e9/_1023665.jpg",
-    "images/Produktov\u00e9/_1023667.jpg",
-    "images/Produktov\u00e9/_1023668.jpg"
+    "images/Produktov\u00e9/obr20.jpg",
+    "images/Produktov\u00e9/obr21.jpg",
+    "images/Produktov\u00e9/obr22.jpg",
+    "images/Produktov\u00e9/obr23.jpg"
   ],
   "Voln\u00e1 tvorba": [
-    "images/Voln\u00e1 tvorba/IMG_0389.JPG",
-    "images/Voln\u00e1 tvorba/IMG_1485-Enhanced-NR.jpg",
-    "images/Voln\u00e1 tvorba/IMG_1561.jpg",
-    "images/Voln\u00e1 tvorba/IMG_2244.jpg",
-    "images/Voln\u00e1 tvorba/socha pre edit.jpg",
-    "images/Voln\u00e1 tvorba/_1020088-2-2.jpg",
-    "images/Voln\u00e1 tvorba/_MG_3219.jpg"
+    "images/Voln\u00e1 tvorba/obr24.jpg",
+    "images/Voln\u00e1 tvorba/obr25.jpg",
+    "images/Voln\u00e1 tvorba/obr26.JPG",
+    "images/Voln\u00e1 tvorba/obr27.jpg",
+    "images/Voln\u00e1 tvorba/obr28.jpg",
+    "images/Voln\u00e1 tvorba/obr29.jpg",
+    "images/Voln\u00e1 tvorba/obr30.jpg"
   ]
 };
