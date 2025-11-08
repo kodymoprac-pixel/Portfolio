@@ -127,7 +127,7 @@
       files.forEach(fileName => {
     const img = document.createElement("img");
     // URL obrázku odkazuje na raw GitHub content
-    img.src = `https://raw.githubusercontent.com/kodymoprac-pixel/portfolio/main/images/${folderName}/${fileName}`;
+    img.src = fileName; // protože fileName už obsahuje 'images/.../soubor'
     img.loading = "lazy";
     grid.appendChild(img);
     });
